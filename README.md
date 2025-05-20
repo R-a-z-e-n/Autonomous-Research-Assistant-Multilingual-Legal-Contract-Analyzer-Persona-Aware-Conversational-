@@ -1,0 +1,2 @@
+# Autonomous-Research-Assistant-Multilingual-Legal-Contract-Analyzer-Persona-Aware-Conversational-
+Autonomous Research Assistant Summarizes latest research from arXiv, generates critical commentary, and maps topics over time using topic modeling + abstractive summarization.  Multilingual Legal Contract Analyzer Extract obligations, risks, and summaries from international contracts using NER, dependency parsing, and transformers.  
