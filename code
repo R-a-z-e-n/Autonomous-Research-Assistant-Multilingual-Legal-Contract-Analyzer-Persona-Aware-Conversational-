@@ -1,6 +1,6 @@
-# ================================
+
 # CODE 1: Autonomous Research Assistant
-# ================================
+
 !pip install transformers torch PyMuPDF gensim
 
 from transformers import pipeline
@@ -10,13 +10,13 @@ import re
 
 summarizer = pipeline("summarization")
 
-# Extract text from PDF (e.g., downloaded arXiv paper)
+
 def extract_text_from_pdf(file_path):
     doc = fitz.open(file_path)
     text = " ".join([page.get_text() for page in doc])
     return text
 
-# Topic modeling from text using LDA
+
 def extract_topics(text, num_topics=5):
     sentences = [re.findall(r"\b\w+\b", line.lower()) for line in text.split('.') if line]
     dictionary = corpora.Dictionary(sentences)
@@ -24,22 +24,19 @@ def extract_topics(text, num_topics=5):
     lda = models.LdaModel(corpus, num_topics=num_topics, id2word=dictionary, passes=10)
     return lda.print_topics()
 
-# Autonomous Research Workflow
+
 def analyze_research_paper(pdf_path):
     text = extract_text_from_pdf(pdf_path)
     summary = summarizer(text[:4000])  # summarizing first 4000 chars
     topics = extract_topics(text)
     return summary, topics
 
-# Usage example:
-# summary, topics = analyze_research_paper("your_arxiv_paper.pdf")
-# print("Summary:", summary)
-# print("Topics:", topics)
 
 
-# ================================
+
+
 # CODE 2: Multilingual Legal Contract Analyzer
-# ================================
+
 !pip install transformers spacy
 !python -m spacy download en_core_web_sm
 
@@ -50,7 +47,7 @@ ner = pipeline("ner", aggregation_strategy="simple")
 summarizer = pipeline("summarization")
 nlp = spacy.load("en_core_web_sm")
 
-# Legal contract analyzer
+
 def analyze_contract(text):
     obligations = []
     risks = []
@@ -71,14 +68,12 @@ def analyze_contract(text):
         "Summary": summary
     }
 
-# Usage example:
-# result = analyze_contract(contract_text)
-# print(result)
 
 
-# ================================
+
+
 # CODE 3: Persona-Aware Conversational Agent
-# ================================
+
 !pip install transformers
 
 from transformers import pipeline, Conversation, ConversationalPipeline
@@ -86,7 +81,7 @@ from transformers import pipeline, Conversation, ConversationalPipeline
 conversation_pipeline = pipeline("conversational")
 sentiment = pipeline("sentiment-analysis")
 
-# Maintain persona and memory
+
 user_profile = {
     "name": "Alex",
     "traits": ["curious", "analytical"],
@@ -95,7 +90,6 @@ user_profile = {
 
 conversation_memory = []
 
-# Conversational agent
 
 def persona_aware_chat(user_input):
     emotion = sentiment(user_input)[0]
